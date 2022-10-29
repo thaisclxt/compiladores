@@ -1,5 +1,5 @@
-from state import State
-from transition import Transition
+from classes.state import State
+from classes.transition import Transition
 
 
 class Automaton():

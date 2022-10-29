@@ -1,4 +1,4 @@
-from state import State
+from classes.state import State
 
 
 class Transition():

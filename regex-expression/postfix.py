@@ -110,15 +110,3 @@ def convert_to_postfix(regular_expression: str) -> str:
         postfix.append(stack_top)
 
     return convert_backslash(''.join(postfix), False)
-
-
-def main():
-    print('Entre com a expressão regular na forma infixa:')
-    regular_expression = input('--> ')
-
-    postfix = convert_to_postfix(regular_expression)
-    print('\nExpressão pós fixa:\n--> ' + postfix)
-
-
-if __name__ == '__main__':
-    main()
