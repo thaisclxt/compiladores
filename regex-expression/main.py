@@ -1,3 +1,4 @@
+from functions.fecho_e import fecho_algotithm
 from postfix import convert_to_postfix
 from thompson_algorithm import thompson_algorithm
 
@@ -19,6 +20,9 @@ def main():
     automaton_result.showTransitionTable()
 
     print('\n---------------------------------')
+
+    print('\nAutômato finito determinístico:')
+    fecho_algotithm(automaton_result)
 
 
 if __name__ == '__main__':
