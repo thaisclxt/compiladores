@@ -1,4 +1,4 @@
-from functions.fecho_e import fecho_algotithm
+from functions.fecho_e import fecho_algorithm
 from postfix import convert_to_postfix
 from thompson_algorithm import thompson_algorithm
 
@@ -22,7 +22,7 @@ def main():
     print('\n---------------------------------')
 
     print('\nAutômato finito determinístico:')
-    fecho_algotithm(automaton_result)
+    fecho_algorithm(automaton_result)
 
 
 if __name__ == '__main__':
