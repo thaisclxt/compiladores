@@ -23,7 +23,7 @@ def union(a: Automaton, b: Automaton):
         automaton.setAlphabet(letter)
 
     # Adiciona o movimento vazio ao alfabeto do novo automato
-    automaton.setAlphabet("&")
+    automaton.setAlphabet("ε")
 
     # Cria os estados do novo automato resultante
     automaton.createState(new_initial)

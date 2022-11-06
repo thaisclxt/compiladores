@@ -9,11 +9,16 @@ def main():
     postfix_expression = convert_to_postfix(regular_expression)
     print('\nExpressão pós fixa:\n--> ' + postfix_expression)
 
+    print('\n---------------------------------')
+
     automaton_result = thompson_algorithm(postfix_expression)
-    print('\n-----------------------\n')
-    print('AFND-ɛ:\n')
-    for transition in automaton_result.showTransitions():
-        print(transition)
+    print('\nAutômato finito não determinístico com movimento vazio:')
+
+    automaton_result.showAlphabet()
+    automaton_result.showStates()
+    automaton_result.showTransitionTable()
+
+    print('\n---------------------------------')
 
 
 if __name__ == '__main__':

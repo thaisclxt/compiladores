@@ -15,7 +15,7 @@ def kleene_star(automaton: Automaton):
     automaton.createState(new_final)
 
     # Adiciona o movimento vazio ao alfabeto do automato
-    automaton.setAlphabet("&")
+    automaton.setAlphabet("ε")
 
     # O antigo estado inicial deixa de ser inicial e o antigo final deixa de ser final
     old_initial = automaton.initial_state

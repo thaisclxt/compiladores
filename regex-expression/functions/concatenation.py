@@ -22,7 +22,7 @@ def concatenation(a: Automaton, b: Automaton):
         automaton.setAlphabet(letter)
 
     # Adiciona o movimento vazio ao alfabeto do novo automato
-    automaton.setAlphabet("&")
+    automaton.setAlphabet("ε")
 
     # Cria estados para o novo automato
     automaton.createState(initial_state)
