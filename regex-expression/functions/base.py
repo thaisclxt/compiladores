@@ -1,6 +1,7 @@
 from classes.state import State
 from classes.automaton import Automaton
 
+
 def base(symbol: str):
     # Cria um estado inicial e um estado final
     q0 = State(0, True, False)
@@ -10,13 +11,13 @@ def base(symbol: str):
     automaton = Automaton(q0, [qf])
 
     # Adiciona o alfabeto
-    automaton.setAlphabet(symbol)
+    automaton.set_alphabet(symbol)
 
     # Cria os estados
-    automaton.createState(q0)
-    automaton.createState(qf)
+    automaton.create_state(q0)
+    automaton.create_state(qf)
 
     # Cria a transição entre os estados
-    automaton.createTransition(symbol, q0, qf)
+    automaton.create_transition(symbol, q0, qf)
 
     return automaton

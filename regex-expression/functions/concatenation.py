@@ -16,21 +16,21 @@ def concatenation(a: Automaton, b: Automaton):
 
     # Adiciona o alfabeto ao novo automato resultante
     for letter in a.alphabet:
-        automaton.setAlphabet(letter)
+        automaton.set_alphabet(letter)
 
     for letter in b.alphabet:
-        automaton.setAlphabet(letter)
+        automaton.set_alphabet(letter)
 
     # Adiciona o movimento vazio ao alfabeto do novo automato
-    automaton.setAlphabet("ε")
+    automaton.set_alphabet("ε")
 
     # Cria estados para o novo automato
-    automaton.createState(initial_state)
+    automaton.create_state(initial_state)
 
     for i in range(1, qtd_a + qtd_b - 1):
-        automaton.createState(State(i, False, False))
+        automaton.create_state(State(i, False, False))
 
-    automaton.createState(final_state)
+    automaton.create_state(final_state)
 
     # Adiciona as transições referente ao automato a
     for t in a.transitions:
@@ -42,7 +42,7 @@ def concatenation(a: Automaton, b: Automaton):
         from_state = next(x for x in automaton.states if x.index == index_from)
         to_state = next(x for x in automaton.states if x.index == index_to)
 
-        automaton.createTransition(symbol, from_state, to_state)
+        automaton.create_transition(symbol, from_state, to_state)
 
     # Adiciona as transições referente ao automato b
     for t in b.transitions:
@@ -56,12 +56,12 @@ def concatenation(a: Automaton, b: Automaton):
         to_state = next(
             x for x in automaton.states if x.index == qtd_a + index_to)
 
-        automaton.createTransition(symbol, from_state, to_state)
+        automaton.create_transition(symbol, from_state, to_state)
 
     # Cria uma transição de movimento vazio do antigo final de a para o antigo inicial de b
     old_final_a = next(x for x in automaton.states if x.index == qtd_a - 1)
     old_initial_b = next(x for x in automaton.states if x.index == qtd_a)
 
-    automaton.createTransition('ε', old_final_a, old_initial_b)
+    automaton.create_transition('ε', old_final_a, old_initial_b)
 
     return automaton

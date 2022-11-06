@@ -15,9 +15,9 @@ def main():
     automaton_result = thompson_algorithm(postfix_expression)
     print('\nAutômato finito não determinístico com movimento vazio:')
 
-    automaton_result.showAlphabet()
-    automaton_result.showStates()
-    automaton_result.showTransitionTable()
+    automaton_result.show_alphabet()
+    automaton_result.show_states()
+    automaton_result.show_transition_table()
 
     print('\n---------------------------------')
 

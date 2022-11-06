@@ -11,20 +11,20 @@ class Automaton():
         self.states = []
         self.transitions: list[Transition] = []
 
-    def setAlphabet(self, letter: str):
+    def set_alphabet(self, letter: str):
         if letter not in self.alphabet:
             self.alphabet.append(letter)
 
-    def createState(self, state: State):
+    def create_state(self, state: State):
         self.states.append(state)
 
-    def createTransition(self, symbol: str, from_state: State, to_state: State):
+    def create_transition(self, symbol: str, from_state: State, to_state: State):
         self.transitions.append(Transition(symbol, from_state, to_state))
 
-    def showAlphabet(self):
+    def show_alphabet(self):
         print('\nAlfabeto:\n--> {' + ', '.join(self.alphabet) + '}')
 
-    def showStates(self):
+    def show_states(self):
         output = '\nEstados: '
 
         for state in self.states:
@@ -38,8 +38,8 @@ class Automaton():
 
         print(output)
 
-    def showTransitionTable(self):
-        output = ['\nTabela de Transição:']
+    def show_transition_table(self):
+        print('\nTabela de Transição:')
 
         for state in self.states:
             if state.is_final:
@@ -53,15 +53,11 @@ class Automaton():
                     symbol_list.append(transition.symbol)
                     list_index_to.append(transition.to_state.index)
 
-            output.append(
-                self.line(
-                    str(state.index),
-                    str(transition.symbol),
-                    [f'q{x}' for x in list_index_to],
-                )
-            )
-
-        print("\n".join(output))
+            print(self.line(
+                str(state.index),
+                str(transition.symbol),
+                [f'q{x}' for x in list_index_to],
+            ))
 
     def line(self, index_from, symbol, list_index_to):
         return f'T(q{index_from}, {symbol}) = {{' + ', '.join(list_index_to) + '}'

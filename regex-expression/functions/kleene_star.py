@@ -11,11 +11,11 @@ def kleene_star(automaton: Automaton):
     new_initial = State(0, True, False)
     new_final = State(len(automaton.states)+1, False, True)
 
-    automaton.createState(new_initial)
-    automaton.createState(new_final)
+    automaton.create_state(new_initial)
+    automaton.create_state(new_final)
 
     # Adiciona o movimento vazio ao alfabeto do automato
-    automaton.setAlphabet("ε")
+    automaton.set_alphabet("ε")
 
     # O antigo estado inicial deixa de ser inicial e o antigo final deixa de ser final
     old_initial = automaton.initial_state
@@ -25,9 +25,9 @@ def kleene_star(automaton: Automaton):
     old_final.is_final = False
 
     # Cria as transições entre os estados
-    automaton.createTransition('ε', new_initial, old_initial)
-    automaton.createTransition('ε', new_initial, new_final)
-    automaton.createTransition('ε', old_final, old_initial)
-    automaton.createTransition('ε', old_final, new_final)
+    automaton.create_transition('ε', new_initial, old_initial)
+    automaton.create_transition('ε', new_initial, new_final)
+    automaton.create_transition('ε', old_final, old_initial)
+    automaton.create_transition('ε', old_final, new_final)
 
     return automaton
