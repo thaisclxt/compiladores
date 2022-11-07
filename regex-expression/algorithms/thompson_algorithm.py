@@ -1,9 +1,11 @@
+from classes.automaton import Automaton
 from functions.base import base
 from functions.concatenation import concatenation
 from functions.kleene_star import kleene_star
 from functions.union import union
 
-def thompson_algorithm(postfix_expression: str):
+
+def thompson_algorithm(postfix_expression: str) -> Automaton:
     automaton_list = []
 
     for element in postfix_expression:

@@ -2,7 +2,7 @@ from classes.state import State
 from classes.automaton import Automaton
 
 
-def kleene_star(automaton: Automaton):
+def kleene_star(automaton: Automaton) -> Automaton:
     # Renomeia os estados
     for state in automaton.states:
         state.index += 1

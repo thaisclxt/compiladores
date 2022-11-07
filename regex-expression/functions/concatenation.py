@@ -2,7 +2,7 @@ from classes.state import State
 from classes.automaton import Automaton
 
 
-def concatenation(a: Automaton, b: Automaton):
+def concatenation(a: Automaton, b: Automaton) -> Automaton:
     # Armazena a quantidade de estados dos automatos
     qtd_a = len(a.states)
     qtd_b = len(b.states)

@@ -39,7 +39,7 @@ def convert_backslash(expression: str, will_remove: bool = True) -> str:
     return expression.replace('ඞ', '\\\\')
 
 
-def convert_to_postfix(regular_expression: str) -> str:
+def postfix_algorithm(regular_expression: str) -> str:
     explicit_expression = list(convert_to_explicit(
         convert_backslash(regular_expression)))
 

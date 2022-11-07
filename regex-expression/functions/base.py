@@ -2,7 +2,7 @@ from classes.state import State
 from classes.automaton import Automaton
 
 
-def base(symbol: str):
+def base(symbol: str) -> Automaton:
     # Cria um estado inicial e um estado final
     q0 = State(0, True, False)
     qf = State(1, False, True)

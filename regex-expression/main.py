@@ -1,13 +1,13 @@
-from functions.fecho_e import fecho_algorithm
-from postfix import convert_to_postfix
-from thompson_algorithm import thompson_algorithm
+from algorithms.fecho_algorithm import fecho_algorithm
+from algorithms.postfix_algorithm import postfix_algorithm
+from algorithms.thompson_algorithm import thompson_algorithm
 
 
-def main():
+def main() -> None:
     print('Entre com a expressão regular na forma infixa:')
     regular_expression = input('--> ')
 
-    postfix_expression = convert_to_postfix(regular_expression)
+    postfix_expression = postfix_algorithm(regular_expression)
     print('\nExpressão pós fixa:\n--> ' + postfix_expression)
 
     print('\n---------------------------------')
@@ -23,6 +23,8 @@ def main():
 
     print('\nAutômato finito determinístico:')
     fecho_algorithm(automaton_result)
+
+    print('\n---------------------------------')
 
 
 if __name__ == '__main__':

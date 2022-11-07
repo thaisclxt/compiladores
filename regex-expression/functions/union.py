@@ -3,7 +3,7 @@ from classes.automaton import Automaton
 
 
 # Quem é inicial deixa de ser inicial e quem é final deixa de ser final
-def union(a: Automaton, b: Automaton):
+def union(a: Automaton, b: Automaton) -> Automaton:
     # Armazena a quantidade de estados dos automatos
     qtd_a = len(a.states)
     qtd_b = len(b.states)
