@@ -1,3 +1,5 @@
+from classes.fecho_epsilon import FechoEpsilon
+from algorithms.AFD_algorithm import AFD_algorithm
 from algorithms.fecho_algorithm import fecho_algorithm
 from algorithms.postfix_algorithm import postfix_algorithm
 from algorithms.thompson_algorithm import thompson_algorithm
@@ -22,7 +24,10 @@ def main() -> None:
     print('\n---------------------------------')
 
     print('\nAutômato finito determinístico:')
-    fecho_algorithm(automaton_result)
+    fecho_epsilon = FechoEpsilon()
+
+    fecho_algorithm(automaton_result, fecho_epsilon)
+    AFD_algorithm(automaton_result, fecho_epsilon)
 
     print('\n---------------------------------')
 
