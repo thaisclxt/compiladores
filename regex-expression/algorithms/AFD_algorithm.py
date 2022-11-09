@@ -1,5 +1,7 @@
 from classes.fecho_epsilon import FechoEpsilon
 from classes.automaton import Automaton
+from classes.transition import Transition
+from classes.state import State
 
 
 def AFD_algorithm(automaton: Automaton, fecho_epsilon: FechoEpsilon) -> None:
@@ -10,6 +12,7 @@ def AFD_algorithm(automaton: Automaton, fecho_epsilon: FechoEpsilon) -> None:
         new_alphabet.remove('ε')
 
     state_list = []
+    transition_list = []
     state_list.append((q0, False))
 
     print()
@@ -17,33 +20,39 @@ def AFD_algorithm(automaton: Automaton, fecho_epsilon: FechoEpsilon) -> None:
     while [x[1] for x in state_list].count(False) != 0:
         for i in range(len(state_list)):
             state, checked = state_list[i]
-
-            print(f'Estado: {state}')
-            print(f'Marcado: {checked}\n')
-
-            result = 'Ω'
+            if checked:
+                continue
 
             for letter in new_alphabet:
+                result = ['Ω']
                 for transition in automaton.transitions:
-                    for s in state:
-                        if transition.symbol == letter and transition.from_state.index == s:
-                            index = transition.to_state.index
-                            result = convert_to_int(fecho_epsilon.fecho[index])
+                    if transition.symbol != letter or transition.from_state.index not in state:
+                        continue
 
-                            if result not in [x[0] for x in state_list]:
-                                # Adiciona como um estado não marcado
-                                state_list.append((result, False))
+                    to_state = transition.to_state.index
+                    new_result = convert_to_int(fecho_epsilon.fecho[to_state])
+                    result = new_result if result == ['Ω'] else [
+                        *result, *new_result]
 
-            if result == 'Ω' and result not in [x[0] for x in state_list]:
-                # Adiciona como um estado não marcado
-                state_list.append((result, False))
+                    print(f'Transição de {state_list[i][0]}', end='')
+                    print(f' para {result} com simbolo {letter}')
+
+                if result not in [x[0] for x in state_list]:
+                    # Adiciona como um estado não marcado
+                    state_list.append((result, False))
+
+                transition_list.append((state, letter, result))
 
             # Marcar estado
             state_list[i] = (state, True)
 
     print(state_list)
-    print([x[0] for x in state_list])
+    print(transition_list)
 
 
 def convert_to_int(states: list):
     return [int(x[1:]) for x in states]
+
+
+def get_result():
+    pass
