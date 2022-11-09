@@ -19,3 +19,4 @@ def fecho_algorithm(automaton: Automaton, fecho_epsilon: FechoEpsilon) -> None:
 
         fecho_epsilon.order_states(state.index)
         print(fecho_epsilon.fecho_line(state.index))
+    print()
