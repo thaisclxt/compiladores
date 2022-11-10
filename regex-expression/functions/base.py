@@ -1,14 +1,14 @@
 from classes.state import State
-from classes.automaton import Automaton
+from classes.AFND import AFND
 
 
-def base(symbol: str) -> Automaton:
+def base(symbol: str) -> AFND:
     # Cria um estado inicial e um estado final
     q0 = State(0, True, False)
     qf = State(1, False, True)
 
     # Cria um automato passando o estado inicial e o estado final
-    automaton = Automaton(q0, [qf])
+    automaton = AFND(q0, [qf])
 
     # Adiciona o alfabeto
     automaton.set_alphabet(symbol)

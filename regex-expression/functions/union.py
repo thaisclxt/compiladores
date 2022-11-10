@@ -1,9 +1,9 @@
 from classes.state import State
-from classes.automaton import Automaton
+from classes.AFND import AFND
 
 
 # Quem é inicial deixa de ser inicial e quem é final deixa de ser final
-def union(a: Automaton, b: Automaton) -> Automaton:
+def union(a: AFND, b: AFND) -> AFND:
     # Armazena a quantidade de estados dos automatos
     qtd_a = len(a.states)
     qtd_b = len(b.states)
@@ -13,7 +13,7 @@ def union(a: Automaton, b: Automaton) -> Automaton:
     new_final = State(qtd_a + qtd_b + 1, False, True)
 
     # Cria um novo automato resultante passando o novo estado inicial e final
-    automaton = Automaton(new_initial, [new_final])
+    automaton = AFND(new_initial, [new_final])
 
     # Adiciona o alfabeto ao novo automato resultante
     for letter in a.alphabet:

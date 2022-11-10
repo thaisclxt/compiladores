@@ -1,11 +1,12 @@
 from classes.fecho_epsilon import FechoEpsilon
-from classes.automaton import Automaton
 from classes.transition import Transition
 from classes.state import State
+from classes.AFND import AFND
+from classes.AFD import AFD
 
 
 # Criar um automato finito determinístico a partir de um automato finito não determinístico
-def AFD_algorithm(automaton: Automaton, fecho_epsilon: FechoEpsilon) -> None:
+def AFD_algorithm(automaton: AFND, fecho_epsilon: FechoEpsilon) -> None:
     # Lista de estados do AFD que armazena uma tupla como uma lista de inteiros e um booleano para indicar se é um estado marcado
     state_list = []
 
@@ -72,7 +73,7 @@ def map_list(key: int, state_list: list):
     return [x[key] for x in state_list]
 
 
-def get_alphabet(automaton: Automaton):
+def get_alphabet(automaton: AFND):
     AFD_alphabet = automaton.alphabet.copy()
     if 'ε' in automaton.alphabet:
         AFD_alphabet.remove('ε')
@@ -97,7 +98,7 @@ def get_initial_state(state_list: list, AFD_q0: int):
     return state_list[0]
 
 
-def get_final_state(old_state_list: list, automaton: Automaton, state_list: list):
+def get_final_state(old_state_list: list, automaton: AFND, state_list: list):
     final_states_index = []
 
     AFND_qf = [x.index for x in automaton.final_states]
@@ -115,8 +116,7 @@ def get_final_state(old_state_list: list, automaton: Automaton, state_list: list
     return [x for x in state_list if x.is_final]
 
 
-def new_automaton(state_list: list, automaton: Automaton, AFD_q0: int, transition_list: list, alphabet):
-
+def new_automaton(state_list: list, automaton: AFND, AFD_q0: int, transition_list: list, alphabet):
     lista_de_estados_do_afd = []
     for state in map_list(0, state_list):
         lista_de_estados_do_afd.append(
@@ -128,7 +128,7 @@ def new_automaton(state_list: list, automaton: Automaton, AFD_q0: int, transitio
     final_state_list = get_final_state(
         state_list, automaton, lista_de_estados_do_afd)
 
-    new_automaton = Automaton(initial_state, final_state_list)
+    new_automaton = AFD(initial_state, final_state_list)
     new_automaton.alphabet = alphabet
     new_automaton.states = lista_de_estados_do_afd
 
@@ -143,13 +143,8 @@ def new_automaton(state_list: list, automaton: Automaton, AFD_q0: int, transitio
 
             elif state_list.index((transition[2], True)) == x.index:
                 to_state = x
-        # from_state = next(
-        #     [x for x in lista_de_estados_do_afd if state_list.index((transition[0], True)) == x.index])
-        # to_state = next(
-        #     [x for x in lista_de_estados_do_afd if x.index(transition[2])])
-        print(f'T({symbol}, {from_state.index})={to_state.index}')
         new_automaton.create_transition(symbol, from_state, to_state)
 
     new_automaton.show_alphabet()
     new_automaton.show_states()
-    new_automaton.print_tr()
+    new_automaton.show_transitions()

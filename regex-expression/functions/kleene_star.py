@@ -1,8 +1,8 @@
 from classes.state import State
-from classes.automaton import Automaton
+from classes.AFND import AFND
 
 
-def kleene_star(automaton: Automaton) -> Automaton:
+def kleene_star(automaton: AFND) -> AFND:
     # Renomeia os estados
     for state in automaton.states:
         state.index += 1

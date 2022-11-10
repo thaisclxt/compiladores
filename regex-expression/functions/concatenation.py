@@ -1,8 +1,8 @@
 from classes.state import State
-from classes.automaton import Automaton
+from classes.AFND import AFND
 
 
-def concatenation(a: Automaton, b: Automaton) -> Automaton:
+def concatenation(a: AFND, b: AFND) -> AFND:
     # Armazena a quantidade de estados dos automatos
     qtd_a = len(a.states)
     qtd_b = len(b.states)
@@ -12,7 +12,7 @@ def concatenation(a: Automaton, b: Automaton) -> Automaton:
     final_state = State(qtd_a + qtd_b - 1, False, True)
 
     # Cria um novo automato resultante passando o novo estado inicial e final
-    automaton = Automaton(initial_state, [final_state])
+    automaton = AFND(initial_state, [final_state])
 
     # Adiciona o alfabeto ao novo automato resultante
     for letter in a.alphabet:

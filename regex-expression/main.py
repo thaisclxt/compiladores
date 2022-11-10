@@ -19,7 +19,7 @@ def main() -> None:
 
     automaton_result.show_alphabet()
     automaton_result.show_states()
-    automaton_result.show_transition_table()
+    automaton_result.show_transition()
 
     print('\n---------------------------------')
 

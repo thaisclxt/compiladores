@@ -22,49 +22,19 @@ class Automaton():
         self.transitions.append(Transition(symbol, from_state, to_state))
 
     def show_alphabet(self) -> None:
-        print('\nAlfabeto:\n--> {' + ', '.join(self.alphabet) + '}')
+        print(f'\nAlfabeto:\n--> {{{", ".join(self.alphabet)}}}')
 
     def show_states(self) -> None:
         output = '\nEstados: '
-
+        # Obs: o estado pode ser inicial e final ao mesmo tempo
         for state in self.states:
             if state == self.initial_state:
                 output += '->'
-
-            elif state in self.final_states:
+            if state in self.final_states:
                 output += '*'
-
             output += f'q{state.index} '
 
         print(output)
 
-    def show_transition_table(self) -> None:
+    def show_transition(self) -> None:
         print('\nTabela de Transição:')
-
-        for state in self.states:
-            if state.is_final:
-                continue
-
-            symbol_list = []
-            list_index_to = []
-
-            for transition in self.transitions:
-                if transition.from_state == state:
-                    symbol_list.append(transition.symbol)
-                    list_index_to.append(transition.to_state.index)
-
-            print(self.line(
-                str(state.index),
-                symbol_list[0],
-                [f'q{x}' for x in list_index_to],
-            ))
-
-    def line(self, index_from, symbol, list_index_to) -> str:
-        return f'T(q{index_from}, {symbol}) = {{' + ', '.join(list_index_to) + '}'
-
-    def print_tr(self) -> None:
-        print('\nTabela de Transição:')
-
-        for transition in self.transitions:
-            print(
-                f'T(q{transition.from_state.index}, {transition.symbol}) = q{transition.to_state.index}')
