@@ -61,6 +61,8 @@ def AFD_algorithm(automaton: Automaton, fecho_epsilon: FechoEpsilon) -> None:
         print(
             f'T({convert_to_str(transition[0])}, {convert_to_str(transition[1])})={convert_to_str(transition[2])}')
 
+    new_automaton(state_list, automaton, AFD_q0, transition_list, alphabet)
+
 
 def convert_to_int(states: list):
     return [int(x[1:]) for x in states]
@@ -89,3 +91,65 @@ def get_result(transition: Transition, fecho_epsilon: FechoEpsilon, result: list
 
 def convert_to_str(list: list):
     return ", ".join([str(x) for x in list])
+
+
+def get_initial_state(state_list: list, AFD_q0: int):
+    return state_list[0]
+
+
+def get_final_state(old_state_list: list, automaton: Automaton, state_list: list):
+    final_states_index = []
+
+    AFND_qf = [x.index for x in automaton.final_states]
+    # Para cada index de estado no conjunto de estados finais
+    for final_state_index in AFND_qf:
+        for x in map_list(0, old_state_list):
+            if final_state_index in x:
+                final_states_index.append(old_state_list.index((x, True)))
+
+    for y in final_states_index:
+        for w in state_list:
+            if y == w.index:
+                w.is_final = True
+
+    return [x for x in state_list if x.is_final]
+
+
+def new_automaton(state_list: list, automaton: Automaton, AFD_q0: int, transition_list: list, alphabet):
+
+    lista_de_estados_do_afd = []
+    for state in map_list(0, state_list):
+        lista_de_estados_do_afd.append(
+            State(state_list.index((state, True)), False, False))
+
+    initial_state = get_initial_state(lista_de_estados_do_afd, AFD_q0)
+    initial_state.is_initial = True
+
+    final_state_list = get_final_state(
+        state_list, automaton, lista_de_estados_do_afd)
+
+    new_automaton = Automaton(initial_state, final_state_list)
+    new_automaton.alphabet = alphabet
+    new_automaton.states = lista_de_estados_do_afd
+
+    print()
+    for transition in transition_list:
+        # f'T({convert_to_str(transition[0])}, {convert_to_str(transition[1])})={convert_to_str(transition[2])}')
+        symbol = convert_to_str(transition[1])
+
+        for x in lista_de_estados_do_afd:
+            if state_list.index((transition[0], True)) == x.index:
+                from_state = x
+
+            elif state_list.index((transition[2], True)) == x.index:
+                to_state = x
+        # from_state = next(
+        #     [x for x in lista_de_estados_do_afd if state_list.index((transition[0], True)) == x.index])
+        # to_state = next(
+        #     [x for x in lista_de_estados_do_afd if x.index(transition[2])])
+        print(f'T({symbol}, {from_state.index})={to_state.index}')
+        new_automaton.create_transition(symbol, from_state, to_state)
+
+    new_automaton.show_alphabet()
+    new_automaton.show_states()
+    new_automaton.print_tr()

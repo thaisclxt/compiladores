@@ -61,3 +61,10 @@ class Automaton():
 
     def line(self, index_from, symbol, list_index_to) -> str:
         return f'T(q{index_from}, {symbol}) = {{' + ', '.join(list_index_to) + '}'
+
+    def print_tr(self) -> None:
+        print('\nTabela de Transição:')
+
+        for transition in self.transitions:
+            print(
+                f'T(q{transition.from_state.index}, {transition.symbol}) = q{transition.to_state.index}')
