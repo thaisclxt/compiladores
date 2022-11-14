@@ -57,11 +57,6 @@ def AFD_algorithm(automaton: AFND, fecho_epsilon: FechoEpsilon) -> None:
             # Marca o estado
             state_list[i] = (state, True)
 
-    # Imprimir transições
-    for transition in transition_list:
-        print(
-            f'T({convert_to_str(transition[0])}, {convert_to_str(transition[1])})={convert_to_str(transition[2])}')
-
     new_automaton(state_list, automaton, AFD_q0, transition_list, alphabet)
 
 
@@ -132,16 +127,14 @@ def new_automaton(state_list: list, automaton: AFND, AFD_q0: int, transition_lis
     new_automaton.alphabet = alphabet
     new_automaton.states = lista_de_estados_do_afd
 
-    print()
     for transition in transition_list:
-        # f'T({convert_to_str(transition[0])}, {convert_to_str(transition[1])})={convert_to_str(transition[2])}')
         symbol = convert_to_str(transition[1])
 
         for x in lista_de_estados_do_afd:
             if state_list.index((transition[0], True)) == x.index:
                 from_state = x
 
-            elif state_list.index((transition[2], True)) == x.index:
+            if state_list.index((transition[2], True)) == x.index:
                 to_state = x
         new_automaton.create_transition(symbol, from_state, to_state)
 

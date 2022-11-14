@@ -23,7 +23,7 @@ def main() -> None:
 
     print('\n---------------------------------')
 
-    print('\nAutômato finito determinístico:')
+    print('\nAutômato finito determinístico:\n')
     fecho_epsilon = FechoEpsilon()
 
     fecho_algorithm(automaton_result, fecho_epsilon)
